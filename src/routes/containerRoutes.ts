@@ -7,13 +7,15 @@ import {
   removeContainer,
   getContainerLogs,
   createExec,
-  startExec
+  startExec,
+  getContainerStatus
 } from '../controllers/containerController';
 
 const router = Router();
 
 router.get('/', listContainers as RequestHandler);
 router.get('/:idOrName', getContainer as RequestHandler);
+router.get('/:idOrName/status', getContainerStatus as RequestHandler);
 router.post('/:idOrName/start', startContainer as RequestHandler);
 router.post('/:idOrName/stop', stopContainer as RequestHandler);
 router.delete('/:idOrName', removeContainer as RequestHandler);

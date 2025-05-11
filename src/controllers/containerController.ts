@@ -109,4 +109,26 @@ export const startExec = async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).json({ error: 'Failed to start exec instance' });
   }
+};
+
+export const getContainerStatus = async (req: Request, res: Response) => {
+  try {
+    const container = docker.getContainer(req.params.idOrName);
+    const info = await container.inspect();
+    res.json({
+      status: info.State.Status,
+      running: info.State.Running,
+      paused: info.State.Paused,
+      restarting: info.State.Restarting,
+      oomKilled: info.State.OOMKilled,
+      dead: info.State.Dead,
+      pid: info.State.Pid,
+      exitCode: info.State.ExitCode,
+      error: info.State.Error,
+      startedAt: info.State.StartedAt,
+      finishedAt: info.State.FinishedAt
+    });
+  } catch (error) {
+    res.status(404).json({ error: 'Container not found' });
+  }
 }; 
