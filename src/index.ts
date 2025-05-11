@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Routes
 app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()}: ${req.method} ${req.url}`);
+  console.log(`${req.method} ${req.url}`);
   next();
 });
 app.use('/containers', containerRoutes);
