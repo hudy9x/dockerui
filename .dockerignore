@@ -1,0 +1,33 @@
+# Version control
+.git
+.gitignore
+
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build output
+dist
+build
+
+# Development files
+*.md
+*.log
+.env*
+.editorconfig
+.eslintrc*
+.prettierrc*
+jest.config.js
+coverage
+
+# IDE and editor files
+.idea
+.vscode
+*.swp
+*.swo
+.DS_Store
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose*.yml 
