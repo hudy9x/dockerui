@@ -1,5 +1,5 @@
 # Base stage for pnpm setup
-FROM node:20-slim AS base
+FROM node:20-alpine AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
@@ -31,7 +31,7 @@ COPY package.json pnpm-lock.yaml ./
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
 # Final production stage
-FROM base AS production
+FROM node:20-alpine AS production
 WORKDIR /app
 
 # Copy built application from build-app stage
